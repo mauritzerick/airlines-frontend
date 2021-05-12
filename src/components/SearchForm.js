@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
   constructor() {
@@ -17,13 +18,14 @@ class SearchForm extends Component {
 
   _handleSubmit(event) {
     this.props.onSubmit(this.state.query); //run parent function
+    this.setState({content: ''}); // clear the form once submitted
   }
 
   render() {
     return(
       <form onSubmit={ this._handleSubmit }>
-        <input type='search' placeholder= 'origin'/>
-        <input type='search' placeholder= 'destination'/>
+        <input type='search' placeholder= 'origin' onInput = { this._handleInput } required/>
+        <input type='search' placeholder= 'destination' onInput = { this._handleInput } required/>
         <button>Search</button>
       </form>
     )
@@ -31,4 +33,4 @@ class SearchForm extends Component {
 
 }
 
-export default SearchForm
+export default SearchForm;
