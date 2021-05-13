@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      query: '',
+      origin: '',
+      destination: ''
     };
-    this._handleInput = this._handleInput.bind(this);
+    this._handleOriginInput = this._handleOriginInput.bind(this);
+    this._handleDestinationInput = this._handleDestinationInput.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleInput(event) {
-    this.setState({query: event.target.value});
+  _handleOriginInput(event) {
+    this.setState({origin: event.target.value});
+  }
+  _handleDestinationInput(event) {
+    this.setState({destination: event.target.value});
   }
 
   _handleSubmit(event) {
-    this.props.onSubmit(this.state.query); //run parent function
+    event.preventDefault();
+    this.props.onSubmit(this.state.origin, this.state.destination); //run parent function
     this.setState({content: ''}); // clear the form once submitted
   }
 
   render() {
     return(
       <form onSubmit={ this._handleSubmit }>
-        <input type='search' placeholder= 'origin' onInput = { this._handleInput } required/>
-        <input type='search' placeholder= 'destination' onInput = { this._handleInput } required/>
+        <input type='search' placeholder= 'origin' onInput = { this._handleOriginInput } required/>
+        <input type='search' placeholder= 'destination' onInput = { this._handleDestinationInput } required/>
         <button>Search</button>
       </form>
     )

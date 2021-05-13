@@ -12,12 +12,21 @@ class FlightSearch extends Component {
     this.fetchFlights = this.fetchFlights.bind(this);
   }
 
-  fetchFlights(query) { //query entered into input
+  fetchFlights(originquery, destinationquery) { //query entered into input
+    console.log('Fetch Flights: ');
+    const flightsURL = 'https://intense-chamber-08012.herokuapp.com/flights';
 
-    const flightsURL = 'https://intense-chamber-08012.herokuapp.com/flights'
+    axios(flightsURL).then((results) => {
+      console.log(results);
 
-    axios(flightrURL).then((results)=>{
-      const flights = _(results.data);
+      let flights = [];
+      // results.data.map( () => {
+        // if (results.data.object.name === originquery ** results.data.object.name === destinationquery) {
+        //   flights.push(results.data.object);
+        // }
+      // });
+
+      this.setState({flights: flights});
     });
 
   }
@@ -25,8 +34,8 @@ class FlightSearch extends Component {
   render() {//parent's state is becoming a prop for the child
     return (
       <div>
-        <SearchForm />
-        <Result />
+        <SearchForm onSubmit={ this.fetchFlights } />
+        <Result flights = {this.state.flights}/>
       </div>
     )
   }
