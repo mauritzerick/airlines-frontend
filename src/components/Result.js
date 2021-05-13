@@ -1,60 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Result extends Component {
-  constructor() {
-    super();
-    this.state = {flight_id: ""};
-    this._update = this._update.bind(this);
-  }
-  _update(flight_id)
-  {
-      this.setState({flight_id});
-  }
-
-  _handleClick = (flight_id) => {
-    this.props.passFlightId( flight_id );
-  }
-
-  render() {
-    return(
-      <h1>Flight Results</h1>
-    );
-  }
-
-}
+const Result = (props) => { //props coming from parent
+  console.log(props);
+  return (
+    <div>
+      <ul>
+        {props.flights.map((item, i) => <li key={i}>{`Origin: ${item.origin} - Destination: ${item.destination} - Flight Number: ${item.number} - Date: ${item.date}`} </li>)}
+      </ul>
+    </div>
+  )
+};
 
 export default Result;
-
-
-// class DisplayFlightsV2 extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {flight_id: ""};
-//     this._update = this._update.bind(this);
-//   }
-//   _update(flight_id)
-//   {
-//       this.setState({flight_id});
-//   }
-//
-//   _handleClick = (flight_id) => {
-//     this.props.passFlightId( flight_id );
-//   }
-//
-//   render() {
-//     return (
-//       <div>
-//         <p>Do we fly your selected route? If we do, available flights will pop up below.</p>
-//         {this.props.flights_all.map (s=>
-//           <p key={s.id}>{s.origin} to {s.destination} on {s.date}: Flight&nbsp;{s.number}
-//           <button className="res-button book" onClick = { () => { this._handleClick(s.id) } }>
-//             Book Flight
-//           </button></p>
-//         )}
-//       </div>
-//     );
-//   }
-// }
-//
-// export default DisplayFlightsV2;

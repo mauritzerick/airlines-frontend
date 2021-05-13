@@ -13,20 +13,20 @@ class FlightSearch extends Component {
   }
 
   fetchFlights(originquery, destinationquery) { //query entered into input
-    console.log('Fetch Flights: ');
-    const flightsURL = 'https://intense-chamber-08012.herokuapp.com/flights';
+    const flightsURL = 'https://intense-chamber-08012.herokuapp.com/flights.json';
 
     axios(flightsURL).then((results) => {
-      console.log(results);
 
       let flights = [];
-      // results.data.map( () => {
-        // if (results.data.object.name === originquery ** results.data.object.name === destinationquery) {
-        //   flights.push(results.data.object);
-        // }
-      // });
+      for(let i=0; i < results.data.length; i++ ){
+        if (results.data[i].origin === originquery && results.data[i].destination === destinationquery) {
+          flights.push(results.data[i]);
+
+        }
+      };
 
       this.setState({flights: flights});
+      console.log(this.state.flights);
     });
 
   }
