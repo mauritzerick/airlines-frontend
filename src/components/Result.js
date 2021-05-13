@@ -6,6 +6,7 @@ class Result extends Component {
     super();
     this.state = {flight_id: ""};
     this._update = this._update.bind(this);
+    this.flights = this.flights.bind(this);
   }
   _update(flight_id)
   {
@@ -19,42 +20,16 @@ class Result extends Component {
   render() {
     return(
       <h1>Flight Results</h1>
+      {this.props.flights.map (s=>
+        <p key={s.id}>{s.origin} to {s.destination} on {s.date}: Flight&nbsp;{s.number}
+        <button onClick = { () => { this._handleClick(s.id) } }>
+          Book Flight
+        </button></p>
+      )}
+    </div>
     );
   }
+  }
 
-}
 
 export default Result;
-
-
-class DisplayFlightsV2 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {flight_id: ""};
-    this._update = this._update.bind(this);
-  }
-  _update(flight_id)
-  {
-      this.setState({flight_id});
-  }
-
-  _handleClick = (flight_id) => {
-    this.props.passFlightId( flight_id );
-  }
-
-  render() {
-    return (
-      <div>
-        <p>Do we fly your selected route? If we do, available flights will pop up below.</p>
-        {this.props.flights_all.map (s=>
-          <p key={s.id}>{s.origin} to {s.destination} on {s.date}: Flight&nbsp;{s.number}
-          <button className="res-button book" onClick = { () => { this._handleClick(s.id) } }>
-            Book Flight
-          </button></p>
-        )}
-      </div>
-    );
-  }
-}
-
-export default DisplayFlightsV2;
