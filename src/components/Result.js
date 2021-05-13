@@ -6,7 +6,7 @@ class Result extends Component {
     super();
     this.state = {flight_id: ""};
     this._update = this._update.bind(this);
-    this.flights = this.flights.bind(this);
+
   }
   _update(flight_id)
   {
