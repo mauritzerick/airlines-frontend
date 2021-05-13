@@ -1,7 +1,6 @@
-import SearchForm from './SearchForm';
-import Home from './Home';
-import Result from './Result';
+import FlightSearch from './FlightSearch';
 import Reservation from './Reservation';
+import Home from './Home';
 
 import {
   BrowserRouter as Router,
@@ -26,9 +25,6 @@ function App() {
               <Link to="/search">Search</Link>
             </li>
             <li>
-              <Link to="/results">Result</Link>
-            </li>
-            <li>
               <Link to="/reservation">Reservation</Link>
             </li>
           </ul>
@@ -36,10 +32,7 @@ function App() {
 
         <Switch>
           <Route path="/search">
-            <SearchForm />
-          </Route>
-          <Route path="/results">
-            <Result />
+            <FlightSearch />
           </Route>
           <Route path="/reservation">
             <Reservation/>

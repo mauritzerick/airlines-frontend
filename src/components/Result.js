@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Result extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return(
-      <h1>Search Results Display Here</h1>
-    );
-  }
-
-}
+const Result = (props) => { //props coming from parent
+  console.log(props);
+  return (
+    <div>
+      <ul>
+        {props.flights.map((item, i) => <li key={i}>{`Origin: ${item.origin} - Destination: ${item.destination} - Flight Number: ${item.number} - Date: ${item.date}`} </li>)}
+      </ul>
+    </div>
+  )
+};
 
 export default Result;
