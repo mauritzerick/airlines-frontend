@@ -1,6 +1,7 @@
 import SearchForm from './SearchForm';
 import Home from './Home';
 import Result from './Result';
+import Reservation from './Reservation';
 
 import {
   BrowserRouter as Router,
@@ -27,6 +28,9 @@ function App() {
             <li>
               <Link to="/results">Result</Link>
             </li>
+            <li>
+              <Link to="/reservation">Reservation</Link>
+            </li>
           </ul>
         </nav>
 
@@ -36,6 +40,9 @@ function App() {
           </Route>
           <Route path="/results">
             <Result />
+          </Route>
+          <Route path="/reservation">
+            <Reservation/>
           </Route>
           <Route path="/">
             <Home />
