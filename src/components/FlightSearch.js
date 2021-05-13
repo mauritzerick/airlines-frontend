@@ -9,12 +9,12 @@ class FlightSearch extends Component {
   constructor() {
     super();
     this.state = {flights: [] };
-    // this.fetchFlights = this.fetchFlights.bind(this);
+    this.fetchFlights = this.fetchFlights.bind(this);
   }
 
   fetchFlights(query) { //query entered into input
 
-    const flightsURL =
+    const flightsURL = 'https://intense-chamber-08012.herokuapp.com/flights'
 
     axios(flightrURL).then((results)=>{
       const flights = _(results.data);
